@@ -5,13 +5,14 @@ script that pulls it.
 
 ## Bucket A — Agent / coding (5,000 requests target)
 
-| Source | URL | License | Target | Status |
+| Source | URL | License | Got | Status |
 |---|---|---|---|---|
-| SWE-bench_Lite | https://huggingface.co/datasets/princeton-nlp/SWE-bench_Lite | CC-BY-4.0 | 300 (max in Lite) | Day 2 morning — got rate-limited Day 1 evening |
-| Aider exercism | https://github.com/Aider-AI/aider | Apache-2.0 | 1,000 | Day 2 — script stub |
-| OpenHands trajectories | https://github.com/All-Hands-AI/OpenHands | MIT | 1,000 | Day 2 — script stub |
-| Synthetic Claude Code-style | self-generated, deterministic seed | n/a | 1,500 (got 1500) | **Done Day 1** — `corpora/a/synth-codeagent.jsonl` |
-| Synth top-up to 5K | bump synth count if SWE-bench_Lite + Aider + OpenHands < 3500 | n/a | up to 2,200 | Day 2 morning decision |
+| SWE-bench_Lite | https://huggingface.co/datasets/princeton-nlp/SWE-bench_Lite | CC-BY-4.0 | 300 | **Done Day 2 AM** |
+| Aider / exercism-python | https://github.com/exercism/python | MIT | 140 | **Done Day 2 AM** (140 = full set of practice exercises) |
+| MBPP | https://huggingface.co/datasets/google-research-datasets/mbpp | CC-BY-4.0 | 374 | **Done Day 3 AM** (train split full) |
+| SWE-Gym (OpenHands-style) | https://huggingface.co/datasets/SWE-Gym/SWE-Gym | MIT-style | 1,000 | **Done Day 3 AM** |
+| Synthetic Claude Code-style | self-generated, deterministic seed | n/a | 1,500 | **Done Day 1** |
+| **Bucket A actual N** | | | **3,314** | Below 5K target. Decision logged in `summary.md` once results land. |
 
 Bucket A target stays 5,000. Source mix may shift toward synthetic if upstream pulls underdeliver. That trade-off is honest: synthetic is biased toward Booster's strong patterns, so a synth-heavy bucket overstates the skip rate. Day 2 must surface the real-vs-synthetic split in the published results.
 
