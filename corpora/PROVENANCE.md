@@ -5,12 +5,15 @@ script that pulls it.
 
 ## Bucket A — Agent / coding (5,000 requests target)
 
-| Source | URL | License | Sample | Pull script |
+| Source | URL | License | Target | Status |
 |---|---|---|---|---|
-| SWE-bench traces | https://huggingface.co/datasets/princeton-nlp/SWE-bench | CC-BY-4.0 | 1,500 | `scripts/pull-swebench.ts` |
-| Aider conversation logs | https://github.com/Aider-AI/aider/tree/main/benchmark | Apache-2.0 | 1,000 | `scripts/pull-aider.ts` |
-| OpenHands trajectories | https://github.com/All-Hands-AI/OpenHands | MIT | 1,000 | `scripts/pull-openhands.ts` |
-| Synthetic Claude Code-style | self-generated against open-source repos | n/a | 1,500 | `scripts/synth-codeagent.ts` |
+| SWE-bench_Lite | https://huggingface.co/datasets/princeton-nlp/SWE-bench_Lite | CC-BY-4.0 | 300 (max in Lite) | Day 2 morning — got rate-limited Day 1 evening |
+| Aider exercism | https://github.com/Aider-AI/aider | Apache-2.0 | 1,000 | Day 2 — script stub |
+| OpenHands trajectories | https://github.com/All-Hands-AI/OpenHands | MIT | 1,000 | Day 2 — script stub |
+| Synthetic Claude Code-style | self-generated, deterministic seed | n/a | 1,500 (got 1500) | **Done Day 1** — `corpora/a/synth-codeagent.jsonl` |
+| Synth top-up to 5K | bump synth count if SWE-bench_Lite + Aider + OpenHands < 3500 | n/a | up to 2,200 | Day 2 morning decision |
+
+Bucket A target stays 5,000. Source mix may shift toward synthetic if upstream pulls underdeliver. That trade-off is honest: synthetic is biased toward Booster's strong patterns, so a synth-heavy bucket overstates the skip rate. Day 2 must surface the real-vs-synthetic split in the published results.
 
 ## Bucket B — SaaS chatbot + RAG (5,000 requests target)
 
@@ -24,11 +27,11 @@ script that pulls it.
 
 ## Bucket C — Structured extraction (5,000 requests target)
 
-| Source | URL | License | Sample | Pull script |
+| Source | URL | License | Target | Status |
 |---|---|---|---|---|
-| MMLU subsets | https://huggingface.co/datasets/cais/mmlu | MIT | 2,500 | `scripts/pull-mmlu.ts` |
-| Public document-parsing | TBD (PubLayNet / DocBank candidates) | varies | 1,500 | `scripts/pull-docparse.ts` |
-| Classification tasks | hand-curated from public datasets | varies | 1,000 | `scripts/pull-classification.ts` |
+| MMLU (all 57 subjects) | https://huggingface.co/datasets/cais/mmlu | MIT | 2,500 (got 2500) | **Done Day 1** — `corpora/c/mmlu.jsonl` |
+| Public document-parsing | TBD (PubLayNet / DocBank candidates) | varies | 1,500 | Day 2 — source TBD |
+| Classification tasks | hand-curated from public datasets | varies | 1,000 | Day 2 |
 
 ## License compliance
 
