@@ -4,6 +4,8 @@ export interface BenchRequest {
   id: string;
   prompt: string;
   bucket: 'a' | 'b' | 'c';
+  /** Source dataset identifier (e.g. 'cais/mmlu', 'synthetic'). Tracked through to JSONL outputs so summarize can compute real-vs-synthetic split. */
+  source: string;
   expected_kind?: string;
 }
 

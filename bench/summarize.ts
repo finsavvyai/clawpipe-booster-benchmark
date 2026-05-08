@@ -16,6 +16,7 @@ interface Row {
   output: string;
   error?: string;
   request_id: string;
+  source?: string;
 }
 
 interface BucketBaselineKey { bucket: string; baseline: 'A' | 'B' | 'C' | 'D' }
@@ -110,6 +111,20 @@ function summarize(runDirs: string[]): string {
     const [bucket, baseline] = k.split(':');
     baselineLookup[k] = a;
     lines.push(`| ${bucket.toUpperCase()} | ${baseline} | ${a.n} | ${a.errors} | ${a.skip_rate} (${ci.lo}–${ci.hi}) | ${a.cache_rate} | $${a.cost_usd_per_1k} | ${a.latency_ms_p50} | ${a.latency_ms_p95} |`);
+  }
+
+  lines.push('');
+  lines.push('## Real-vs-synthetic split per bucket (Baseline D rows)');
+  lines.push('');
+  lines.push('| Bucket | Real source rows | Synthetic rows | Synth share |');
+  lines.push('|---|---|---|---|');
+  for (const bucket of ['a', 'b', 'c']) {
+    const rows = allRuns.flatMap((m) => m.get(`${bucket}:D`) ?? []);
+    if (rows.length === 0) continue;
+    const synth = rows.filter((r) => (r.source ?? '').toLowerCase().includes('synth')).length;
+    const real = rows.length - synth;
+    const share = rows.length > 0 ? round4(synth / rows.length) : 0;
+    lines.push(`| ${bucket.toUpperCase()} | ${real} | ${synth} | ${share} |`);
   }
 
   lines.push('');

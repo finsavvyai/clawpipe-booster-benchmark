@@ -18,6 +18,10 @@ function row(baseline: 'A' | 'B' | 'C' | 'D', i: number, bucket: string): object
   const skipped = baseline === 'D' && (i % 100) < p.skipRate * 100;
   const cached = !skipped && (i % 100) < (p.skipRate + p.cacheRate) * 100;
   const lat = 50 + Math.floor(Math.random() * 250) + (skipped ? -45 : cached ? -30 : 0);
+  // Bucket A: 45% synthetic, 55% real (split as MMLU/SWE-bench/etc).
+  // Buckets B and C: 100% real for now.
+  const isSynth = bucket === 'a' && i % 100 < 45;
+  const source = isSynth ? 'synthetic' : bucket === 'a' ? 'princeton-nlp/SWE-bench_Lite' : bucket === 'b' ? 'lmsys/lmsys-chat-1m' : 'cais/mmlu';
   return {
     baseline, provider: 'openai', model: 'gpt-5-mini',
     prompt_tokens: skipped ? 0 : 200,
@@ -26,6 +30,7 @@ function row(baseline: 'A' | 'B' | 'C' | 'D', i: number, bucket: string): object
     cached, skipped, latency_ms: lat,
     output: skipped ? `local-${i}` : cached ? `cached-${i}` : `ai-${i}`,
     request_id: `${bucket}-${i}`,
+    source,
   };
 }
 

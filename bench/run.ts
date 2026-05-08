@@ -29,8 +29,8 @@ function loadBucket(bucket: 'a' | 'b' | 'c', sampleN: number): BenchRequest[] {
     const lines = readFileSync(path, 'utf8').split('\n').filter(Boolean);
     for (const line of lines) {
       try {
-        const obj = JSON.parse(line) as { id: string; prompt: string; expected_kind?: string };
-        out.push({ id: obj.id, prompt: obj.prompt, bucket, expected_kind: obj.expected_kind });
+        const obj = JSON.parse(line) as { id: string; prompt: string; source?: string; expected_kind?: string };
+        out.push({ id: obj.id, prompt: obj.prompt, bucket, source: obj.source ?? fname.replace('.jsonl', ''), expected_kind: obj.expected_kind });
       } catch { /* skip malformed */ }
     }
   }
@@ -77,7 +77,7 @@ async function run(args: Args) {
         // For Baselines A/B/C/D we rotate models; choose deterministically by id-hash.
         const m = MODELS[Math.abs(hashCode(req.id)) % MODELS.length];
         const r = await baseline.call(req, m);
-        appendFileSync(outFile, JSON.stringify({ ...r, request_id: req.id, prompt_len: req.prompt.length }) + '\n');
+        appendFileSync(outFile, JSON.stringify({ ...r, request_id: req.id, source: req.source, prompt_len: req.prompt.length }) + '\n');
         n++; cost += r.cost_usd;
         if (r.skipped) skipped++;
         if (r.cached) cached++;

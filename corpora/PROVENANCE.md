@@ -12,7 +12,8 @@ script that pulls it.
 | MBPP | https://huggingface.co/datasets/google-research-datasets/mbpp | CC-BY-4.0 | 374 | **Done Day 3 AM** (train split full) |
 | SWE-Gym (OpenHands-style) | https://huggingface.co/datasets/SWE-Gym/SWE-Gym | MIT-style | 1,000 | **Done Day 3 AM** |
 | Synthetic Claude Code-style | self-generated, deterministic seed | n/a | 1,500 | **Done Day 1** |
-| **Bucket A actual N** | | | **3,314** | Below 5K target. Decision logged in `summary.md` once results land. |
+| HumanEval | https://huggingface.co/datasets/openai/openai_humaneval | MIT | 164 | **Done Day 7** |
+| **Bucket A actual N** | | | **3,478** | Below 5K target. Synth share 43%. Decision logged in `summary.md` once results land. |
 
 Bucket A target stays 5,000. Source mix may shift toward synthetic if upstream pulls underdeliver. That trade-off is honest: synthetic is biased toward Booster's strong patterns, so a synth-heavy bucket overstates the skip rate. Day 2 must surface the real-vs-synthetic split in the published results.
 
@@ -31,8 +32,8 @@ Bucket A target stays 5,000. Source mix may shift toward synthetic if upstream p
 | Source | URL | License | Target | Status |
 |---|---|---|---|---|
 | MMLU (all 57 subjects) | https://huggingface.co/datasets/cais/mmlu | MIT | 2,500 (got 2500) | **Done Day 1** — `corpora/c/mmlu.jsonl` |
-| Public document-parsing | TBD (PubLayNet / DocBank candidates) | varies | 1,500 | Day 2 — source TBD |
-| Classification tasks | hand-curated from public datasets | varies | 1,000 | Day 2 |
+| Banking77 (intent classification, 77 classes) | https://huggingface.co/datasets/mteb/banking77 | CC-BY-4.0 | 1,500 | Day 7 attempt — HF rate-limited, retry Day 8 |
+| Public document-parsing | TBD (PubLayNet / DocBank candidates) | varies | 1,500 | Day 8+ — source TBD |
 
 ## License compliance
 
