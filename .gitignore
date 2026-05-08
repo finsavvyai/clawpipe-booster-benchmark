@@ -8,3 +8,4 @@ corpora/cache/
 corpora/raw/
 *.log
 .DS_Store
+results/raw/

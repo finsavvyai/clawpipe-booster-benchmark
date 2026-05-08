@@ -9,7 +9,8 @@
     "pull:corpora": "tsx scripts/pull-all.ts",
     "smoke": "tsx bench/run.ts --smoke",
     "bench": "tsx bench/run.ts",
-    "summarize": "tsx scripts/summarize.ts",
+    "summarize": "tsx bench/summarize.ts",
+    "test": "tsx --test bench/quality.test.ts",
     "lint": "tsc --noEmit"
   },
   "engines": {
