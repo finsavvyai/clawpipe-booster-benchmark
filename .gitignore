@@ -9,3 +9,4 @@ corpora/raw/
 *.log
 .DS_Store
 results/raw/
+results/summary.md
